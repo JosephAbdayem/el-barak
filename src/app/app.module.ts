@@ -13,12 +13,14 @@ import { AppComponent } from './components/app/app.component';
 import { CardapioComponent } from './components/cardapio/cardapio.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ModalFinalizacaoPedido } from './components/utils/modal-finalizacao/modal-finalizacao-pedido.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CardapioComponent,
+    ModalFinalizacaoPedido,
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule
   ],
   providers: [],
+  entryComponents: [ModalFinalizacaoPedido],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
