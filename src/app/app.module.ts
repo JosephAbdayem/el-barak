@@ -14,6 +14,7 @@ import { CardapioComponent } from './components/cardapio/cardapio.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ModalFinalizacaoPedido } from './components/utils/modal-finalizacao/modal-finalizacao-pedido.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ModalFinalizacaoPedido } from './components/utils/modal-finalizacao/mod
     MaterialModule,
     FlexLayoutModule,
     AppRoutingModule,
+    HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })

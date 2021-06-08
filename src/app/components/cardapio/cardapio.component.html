@@ -2,11 +2,11 @@
     <h1>Cardápio</h1>
     <mat-horizontal-stepper [linear]="isLinear" #stepper style="height: 90vh;">
 
-        <mat-step [stepControl]="firstFormGroup">
-            <form [formGroup]="firstFormGroup">
+        <mat-step [stepControl]="firstFormGroup" *ngIf="firstFormGroup">
+            <form [formGroup]="firstFormGroup" *ngIf="firstFormGroup">
                 <ng-template matStepLabel>Pratos principais</ng-template>
                 <div fxLayout="column" fxLayoutGap="20px">
-                    <div>
+                    <div class="scroll-table">
                         <table mat-table [dataSource]="pratosPrincipais" class="mat-elevation-z8">
 
                             <ng-container matColumnDef="nome">
@@ -41,7 +41,10 @@
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                         </table>
                     </div>
-                    <div fxLayout="column" fxLayoutAlign="end end" fxLayoutGap="20px">
+                    <div fxLayout="row" fxLayoutAlign="space-between end">
+                        <button mat-raised-button matStepperPrevious>
+                            Anterior
+                        </button>
                         <button mat-raised-button color="warn" matStepperNext>
                             Próximo
                         </button>
@@ -51,11 +54,11 @@
             </form>
         </mat-step>
 
-        <mat-step [stepControl]="firstFormGroup">
-            <form [formGroup]="firstFormGroup">
+        <mat-step [stepControl]="firstFormGroup" *ngIf="firstFormGroup">
+            <form [formGroup]="firstFormGroup" *ngIf="firstFormGroup">
                 <ng-template matStepLabel>Acompanhamentos</ng-template>
                 <div fxLayout="column" fxLayoutGap="20px">
-                    <div>
+                    <div class="scroll-table">
                         <table mat-table [dataSource]="acompanhamentos" class="mat-elevation-z8">
 
                             <ng-container matColumnDef="nome">
@@ -90,7 +93,10 @@
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                         </table>
                     </div>
-                    <div fxLayout="column" fxLayoutAlign="end end" fxLayoutGap="20px">
+                    <div fxLayout="row" fxLayoutAlign="space-between end">
+                        <button mat-raised-button matStepperPrevious>
+                            Anterior
+                        </button>
                         <button mat-raised-button color="warn" matStepperNext>
                             Próximo
                         </button>
@@ -100,11 +106,11 @@
             </form>
         </mat-step>
 
-        <mat-step [stepControl]="firstFormGroup">
-            <form [formGroup]="firstFormGroup">
+        <mat-step [stepControl]="firstFormGroup" *ngIf="firstFormGroup">
+            <form [formGroup]="firstFormGroup" *ngIf="firstFormGroup">
                 <ng-template matStepLabel>Bebidas</ng-template>
                 <div fxLayout="column" fxLayoutGap="20px">
-                    <div>
+                    <div class="scroll-table">
                         <table mat-table [dataSource]="bebidas" class="mat-elevation-z8">
 
                             <ng-container matColumnDef="nome">
@@ -139,7 +145,10 @@
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                         </table>
                     </div>
-                    <div fxLayout="column" fxLayoutAlign="end end" fxLayoutGap="20px">
+                    <div fxLayout="row" fxLayoutAlign="space-between end">
+                        <button mat-raised-button matStepperPrevious>
+                            Anterior
+                        </button>
                         <button mat-raised-button color="warn" matStepperNext>
                             Próximo
                         </button>
@@ -149,11 +158,11 @@
             </form>
         </mat-step>
 
-        <mat-step [stepControl]="firstFormGroup">
-            <form [formGroup]="firstFormGroup">
+        <mat-step [stepControl]="firstFormGroup" *ngIf="firstFormGroup">
+            <form [formGroup]="firstFormGroup" *ngIf="firstFormGroup">
                 <ng-template matStepLabel>Sobremesas</ng-template>
                 <div fxLayout="column" fxLayoutGap="20px">
-                    <div>
+                    <div class="scroll-table">
                         <table mat-table [dataSource]="sobremesas" class="mat-elevation-z8">
 
                             <ng-container matColumnDef="nome">
@@ -188,7 +197,10 @@
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                         </table>
                     </div>
-                    <div fxLayout="column" fxLayoutAlign="end end" fxLayoutGap="20px">
+                    <div fxLayout="row" fxLayoutAlign="space-between end">
+                        <button mat-raised-button matStepperPrevious>
+                            Anterior
+                        </button>
                         <button mat-raised-button color="warn" (click)="abrirModalFinalizarPedido()">
                             Finalizar pedido
                         </button>
