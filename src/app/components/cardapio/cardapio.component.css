@@ -6,3 +6,7 @@ table {
     overflow-y: scroll;
     height: 70vh;
 }
+
+.d-content {
+    display: contents;
+}

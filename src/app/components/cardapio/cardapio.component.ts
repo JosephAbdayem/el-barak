@@ -45,8 +45,7 @@ export class CardapioComponent implements OnInit {
   separarProdutosPorCategoria(produtos: any[]) {
     this.produtos = (produtos as any).content
     this.produtos.forEach((produto) => {
-      console.log(produto);
-
+      produto.quantidade = 0;
       switch (((produto) as Produto).categoria.nome) {
         case 'Pratos principais': {
           this.pratosPrincipais.push(produto)
@@ -65,14 +64,21 @@ export class CardapioComponent implements OnInit {
           break;
         }
       }
-      console.log(this.sobremesas);
-
     });
   }
 
-  abrirModalFinalizarPedido(): void {
-    console.log(this.produtosSelecionados);
+  agruparProdutosSelecionados(): void {
+    this.produtosSelecionados = [];
+    [...this.pratosPrincipais, ...this.acompanhamentos, ...this.bebidas, ...this.sobremesas]
+      .forEach((produto) => {
+        if (produto.quantidade) {
+          this.produtosSelecionados.push(produto);
+        }
+      });
+  }
 
+  abrirModalFinalizarPedido(): void {
+    this.agruparProdutosSelecionados();
     const dialogRef = this.dialog.open(ModalFinalizacaoPedido, {
       width: '500px',
       data: { produtosSelecionados: this.produtosSelecionados }
@@ -81,6 +87,12 @@ export class CardapioComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.produtosSelecionados = result;
     });
+  }
+
+
+  alterarQuantidade(obj, acres) {
+    if (!obj.quantidade && acres === -1) return
+    obj.quantidade += acres;
   }
 
 }

@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ModalFinalizacaoPedido } from './components/utils/modal-finalizacao/modal-finalizacao-pedido.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FinalizacaoComponent } from './components/finalizacao/finalizacao.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     CardapioComponent,
     ModalFinalizacaoPedido,
+    FinalizacaoComponent,
   ],
   imports: [
     CommonModule,

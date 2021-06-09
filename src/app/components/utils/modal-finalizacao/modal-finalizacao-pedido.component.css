@@ -1,3 +1,13 @@
 .pointer {
     cursor: pointer;
 }
+
+.scroll-table {
+    overflow-y: scroll;
+    height: 50vh;
+    width: 30vw;
+}
+
+.btn-block {
+    width: 100%;
+}
