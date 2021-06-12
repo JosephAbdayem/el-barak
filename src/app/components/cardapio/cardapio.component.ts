@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Produto } from 'src/app/interfaces/produto';
-import { CardapioService } from 'src/app/services/cardapio.service';
+import { CardapioService } from 'src/app/services/cardapio/cardapio.service';
 import { ModalFinalizacaoPedido } from '../utils/modal-finalizacao/modal-finalizacao-pedido.component';
 
 @Component({
@@ -29,6 +29,10 @@ export class CardapioComponent implements OnInit {
     private cardapioService: CardapioService
   ) { }
 
+  /**
+   * Método de inicialização
+   * Busca todos os produtos do cardápio
+   */
   async ngOnInit() {
     await this.cardapioService.getAllProdutos()
       .toPromise().then((produtos) => {
@@ -42,7 +46,10 @@ export class CardapioComponent implements OnInit {
     });
   }
 
-  separarProdutosPorCategoria(produtos: any[]) {
+  /**
+   * Realiza a filtragem dos produtos e os separa por categoria.
+   */
+  separarProdutosPorCategoria(produtos: any[]): void {
     this.produtos = (produtos as any).content
     this.produtos.forEach((produto) => {
       produto.quantidade = 0;
@@ -67,6 +74,9 @@ export class CardapioComponent implements OnInit {
     });
   }
 
+  /**
+   * Valida os produtos com quantidade superior a 0 e os adiciona em um array de produtos selecionados.
+   */
   agruparProdutosSelecionados(): void {
     this.produtosSelecionados = [];
     [...this.pratosPrincipais, ...this.acompanhamentos, ...this.bebidas, ...this.sobremesas]
@@ -77,6 +87,9 @@ export class CardapioComponent implements OnInit {
       });
   }
 
+  /**
+   * Abre a modal de finalização passando os produtos selecionados por parâmetro.
+   */
   abrirModalFinalizarPedido(): void {
     this.agruparProdutosSelecionados();
     const dialogRef = this.dialog.open(ModalFinalizacaoPedido, {
@@ -89,8 +102,12 @@ export class CardapioComponent implements OnInit {
     });
   }
 
-
-  alterarQuantidade(obj, acres) {
+  /**
+   * Método ultilizado para somar e subtrair a quantidade dos produtos selecionados.
+   * @param obj objeto a ser alterado
+   * @param acres quantidade a ser somada ao total (quantidade)
+   */
+  alterarQuantidade(obj, acres): void {
     if (!obj.quantidade && acres === -1) return
     obj.quantidade += acres;
   }
