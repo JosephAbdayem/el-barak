@@ -1,7 +1,7 @@
-<div fxLayout="column" fxLayoutAlign="center center" style="height: 100vh;" fxLayoutGap="120px">
-  <div fxLayout="column" fxLayoutAlign="center center">
-    <h1>El barak</h1>
-    <h1>Culinaria árabe</h1>
-  </div>
-  <button [routerLink]="['/cardapio']" mat-raised-button color="warn">Iniciar pedido</button>
+<div fxLayout="column" fxLayoutAlign="space-around center" style="color: black;">
+  <mat-list role="list">
+    <div *ngFor="let palavra of palavras">
+      <mat-list-item role="listitem" style="color: black;">{{palavra}}</mat-list-item>
+    </div>
+  </mat-list>
 </div>

@@ -1,10 +1,10 @@
-# ElBarak
+# Forca Middleware
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:9001/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
@@ -27,7 +27,12 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 ## Extra
-Cirar sub rotas a diferentes areas do sistema
  https://material.angular.io/
  https://tburleson-layouts-demos.firebaseapp.com/#/docs
  https://medium.com/ngconf/angular-pwa-install-and-configure-858dd8e9fb07
+
+## Require
+Node ^12.11.1: https://nodejs.org/en/download/
+
+ ##Run 
+ npm i && npm i @angular/cli && npm start

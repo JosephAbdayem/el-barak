@@ -1,5 +1,5 @@
 {
-  "/elbarak/api": {
+  "/forca/api": {
     "target": "http://localhost:7785",
     "secure": false,
     "logLevel": "debug"

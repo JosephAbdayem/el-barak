@@ -1,6 +1,6 @@
 {
-  "name": "el-barak",
-  "short_name": "el-barak",
+  "name": "forca-middleware",
+  "short_name": "forca-middleware",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
