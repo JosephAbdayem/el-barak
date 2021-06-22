@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/forca-middleware'),
+      dir: require('path').join(__dirname, './coverage/el-barak'),
       subdir: '.',
       reporters: [
         { type: 'html' },

@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "forca-middleware": {
+    "el-barak": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -16,7 +16,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/forca-middleware",
+            "outputPath": "dist/el-barak",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,19 +68,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "forca-middleware:build",
+            "browserTarget": "el-barak:build",
             "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "forca-middleware:build:production"
+              "browserTarget": "el-barak:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "forca-middleware:build"
+            "browserTarget": "el-barak:build"
           }
         },
         "test": {
@@ -119,16 +119,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "forca-middleware:serve"
+            "devServerTarget": "el-barak:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "forca-middleware:serve:production"
+              "devServerTarget": "el-barak:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "forca-middleware"
+  "defaultProject": "el-barak"
 }

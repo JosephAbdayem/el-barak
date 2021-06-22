@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'forca-middleware';
+  title = 'el-barak';
   constructor(private router: Router) { }
 
   /**

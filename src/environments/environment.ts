@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  urlBase: '/forca/api'
+  urlBase: '/elbarak/api'
 };

@@ -1,5 +1,5 @@
 {
-  "name": "forca-middleware",
+  "name": "el-barak",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -23,14 +23,13 @@
     "@angular/platform-browser-dynamic": "~11.2.6",
     "@angular/router": "~11.2.6",
     "@angular/service-worker": "~11.2.6",
-    "net": "^1.0.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1102.5",
-    "@angular/cli": "^11.2.14",
+    "@angular/cli": "~11.2.5",
     "@angular/compiler-cli": "~11.2.6",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",

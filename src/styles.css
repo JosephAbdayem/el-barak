@@ -8,3 +8,52 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.bg-white {
+    background-color: white;
+}
+
+.mat-dialog-container {
+    background-color: white !important;
+}
+
+.bg-soft-primary {
+    background-color: #E9A2AD;
+}
+
+th {
+    background-color: #E9A2AD;
+}
+
+td {
+    color: black !important;
+    background-color: white;
+}
+
+div {
+    color: black;
+}
+
+[mat-header-cell] {
+    line-height: 24px;
+    font-style: normal;
+    color: rgb(41, 56, 69);
+    min-height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+    background-color: #E9A2AD;
+    color: #fff;
+    font-weight: bold;
+}
+
+.border {
+    border-color: rgba(0, 0, 0, 0.3);
+    border: 4px solid;
+}
+
+.text-center {
+    text-align: center !important;
+}
