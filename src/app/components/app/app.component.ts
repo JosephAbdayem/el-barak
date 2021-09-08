@@ -9,12 +9,4 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'el-barak';
   constructor(private router: Router) { }
-
-  /**
-   * Método de inicialização
-   * Redireciona à página home
-   */
-  ngOnInit(): void {
-    this.router.navigate(['/home']);
-  }
 }

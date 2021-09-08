@@ -16,14 +16,20 @@ import { CommonModule } from '@angular/common';
 import { ModalFinalizacaoPedido } from './components/utils/modal-finalizacao/modal-finalizacao-pedido.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FinalizacaoComponent } from './components/finalizacao/finalizacao.component';
+import { FilaPedidosAtivosComponent } from './components/fila-pedidos-ativos/fila-pedidos-ativos.component';
+import { FilaPedidosFinalizadosComponent } from './components/fila-pedidos-finalizados/fila-pedidos-finalizados.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    LoginComponent,
     CardapioComponent,
     ModalFinalizacaoPedido,
     FinalizacaoComponent,
+    FilaPedidosAtivosComponent,
+    FilaPedidosFinalizadosComponent,
   ],
   imports: [
     CommonModule,
@@ -34,7 +40,12 @@ import { FinalizacaoComponent } from './components/finalizacao/finalizacao.compo
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register(
+      'ngsw-worker.js',
+      {
+        enabled: environment.production
+      }
+    )
   ],
   exports: [
     FormsModule,
