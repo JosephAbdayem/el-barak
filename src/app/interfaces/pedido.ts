@@ -11,7 +11,8 @@ export interface Pedido {
     "dataAtualizacao": string,
     "ativo": boolean,
     "mesa": number,
-    "usuario": Usuario
-    "status": Status
-    "carrinhoPedidos": CarrinhoPedido[]
+    "usuario": Usuario,
+    "status": Status,
+    "carrinhoPedidos": CarrinhoPedido[],
+    "itensPedidos": string
 }

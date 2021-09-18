@@ -56,6 +56,7 @@ export class ModalFinalizacaoPedido implements OnInit {
       "usuario": { "id": 1 } as Usuario,
       "status": { "id": 1 } as Status,
       "carrinhoPedidos": [],
+      "itensPedidos": null
     }
     this.inserirItensCarrinho();
   }

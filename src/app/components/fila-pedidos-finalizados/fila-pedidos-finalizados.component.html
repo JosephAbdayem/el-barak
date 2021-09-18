@@ -1,1 +1,68 @@
-<p>fila-pedidos-finalizados works!</p>
+<div fxLayout="column" fxLayoutAlign="center center" style="height: 100vh;" fxLayoutGap="20px">
+    <div fxLayout="row" fxLayoutAlign="start center">
+        <h1>Pedidos finalizados</h1>
+    </div>
+    <div *ngIf="!pedidos[0]">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <div *ngIf="pedidos[0]">
+        <div fxLayout="column" fxLayoutGap="20px">
+            <div class="scroll-table">
+                <table mat-table [dataSource]="pedidos" class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="itensPedidos">
+                        <th mat-header-cell *matHeaderCellDef fxFlex="40" fxLayout="column"
+                            fxLayoutAlign="center center">
+                            Itens
+                        </th>
+                        <td mat-cell *matCellDef="let pedido" fxFlex="40" fxLayout="column"
+                            fxLayoutAlign="center start">
+                            {{ pedido.itensPedidos }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="mesa">
+                        <th mat-header-cell *matHeaderCellDef fxFlex fxLayout="column" fxLayoutAlign="center center">
+                            Mesa
+                        </th>
+                        <td mat-cell *matCellDef="let pedido" fxFlex fxLayout="column" fxLayoutAlign="center center">
+                            {{ pedido.mesa }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="usuario">
+                        <th mat-header-cell *matHeaderCellDef fxFlex fxLayout="column" fxLayoutAlign="center center">
+                            Responsável
+                        </th>
+                        <td mat-cell *matCellDef="let pedido" fxFlex fxLayout="column" fxLayoutAlign="center center">
+                            {{ pedido.usuario.nome }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="dataCadastro">
+                        <th mat-header-cell *matHeaderCellDef fxFlex fxLayout="column" fxLayoutAlign="center center">
+                            Data de recebimento
+                        </th>
+                        <td mat-cell *matCellDef="let pedido" fxFlex fxLayout="column" fxLayoutAlign="center center">
+                            {{ pedido.dataCadastro | date: 'HH:mm:ss dd/MM/yyyy' }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef fxFlex fxLayout="column" fxLayoutAlign="center center">
+                            Status
+                        </th>
+                        <td mat-cell *matCellDef="let pedido" fxFlex fxLayout="column" fxLayoutAlign="center center">
+                            {{ pedido.status.nome }}
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
