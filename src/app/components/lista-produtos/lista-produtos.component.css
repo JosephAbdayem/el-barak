@@ -1,0 +1,9 @@
+table {
+    width: 100%;
+}
+
+.scroll-table {
+    overflow-y: scroll;
+    height: 70vh;
+    width: 90vw;
+}

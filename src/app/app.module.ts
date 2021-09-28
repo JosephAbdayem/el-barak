@@ -19,6 +19,9 @@ import { FinalizacaoComponent } from './components/finalizacao/finalizacao.compo
 import { FilaPedidosAtivosComponent } from './components/fila-pedidos-ativos/fila-pedidos-ativos.component';
 import { FilaPedidosFinalizadosComponent } from './components/fila-pedidos-finalizados/fila-pedidos-finalizados.component';
 import { LoginComponent } from './components/login/login.component';
+import { ListaProdutosComponent } from './components/lista-produtos/lista-produtos.component';
+import { EditarProdutoComponent } from './components/editar-produto/editar-produto.component';
+import { CadastrarProdutoComponent } from './components/cadastrar-produto/cadastrar-produto.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { LoginComponent } from './components/login/login.component';
     FinalizacaoComponent,
     FilaPedidosAtivosComponent,
     FilaPedidosFinalizadosComponent,
+    ListaProdutosComponent,
+    EditarProdutoComponent,
+    CadastrarProdutoComponent,
   ],
   imports: [
     CommonModule,
