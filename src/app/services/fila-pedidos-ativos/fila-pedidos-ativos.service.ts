@@ -15,8 +15,8 @@ export class FilaPedidosAtivosService {
    * Busca todos os pedidos com o atividade requerida do back-end
    * @returns 
    */
-  getAllByAtivo(ativo: boolean): Observable<any[]> {
-    return this.http.get<any[]>(`${environment.urlBase}${this.pedidoUrl}/ativo/carrinho/${ativo}`)
+  getAllByStatusNao(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.urlBase}${this.pedidoUrl}/nao-status/carrinho/${id}`)
   }
 
   insertPedidoCarrinho(pedido: Pedido): Observable<any[]> {

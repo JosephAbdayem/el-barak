@@ -15,7 +15,7 @@ export class ListaProdutosComponent implements OnInit {
   /**
    * Colunas da tabela a serem exibidas na tela de listagem de produtos.
    */
-  public displayedColumns: string[] = ['nome', 'categoria', 'preco', 'ativo'];
+  public displayedColumns: string[] = ['nome', 'categoria', 'preco', 'ativo', 'acoes'];
 
   /**
    * Lista de produtos recebidos do back-end.
@@ -64,7 +64,7 @@ export class ListaProdutosComponent implements OnInit {
    * Busca todos os produtos
    */
   async buscarProdutos() {
-    await this.produtoService.getAll().toPromise().then((pedidos) => {
+    await this.produtoService.buscarTodos().toPromise().then((pedidos) => {
       this.produtos = (pedidos as any).content;
     })
   }
@@ -84,7 +84,7 @@ export class ListaProdutosComponent implements OnInit {
    */
   buscarProdutosCategoriaSelecionada(categoria: Categoria) {
     if (categoria.id) {
-      this.produtoService.getAllPredicate(`categoria_id:${categoria.id}`).toPromise().then((pedidos) => {
+      this.produtoService.buscarPredicate(`categoria_id:${categoria.id}`).toPromise().then((pedidos) => {
         this.produtos = (pedidos as any).content;
       })
     } else {
@@ -98,12 +98,32 @@ export class ListaProdutosComponent implements OnInit {
    */
   buscarProdutosNomeSelecionado() {
     if (this.formBusca.value.nomeProduto) {
-      this.produtoService.getAllPredicate(`nome:${this.formBusca.value.nomeProduto}`).toPromise().then((pedidos) => {
-        console.log((pedidos as any).content);
+      this.produtoService.buscarPredicate(`nome:${this.formBusca.value.nomeProduto}`).toPromise().then((pedidos) => {
         this.produtos = (pedidos as any).content;
       })
     } else {
       this.buscarProdutos();
     }
+  }
+
+  /**
+   * Realiza a alteração do status de atividade do produto
+   * @param ativo Status de atividade do produto
+   * @param produto Objeto do produto alterado
+   */
+  alterarDisponibilidadeProduto(ativo: boolean, produto: Produto) {
+    if (produto) {
+      produto.ativo = ativo;
+      this.produtoService.atualizar(produto).toPromise();
+    }
+  }
+
+  /**
+   * Busca todos os produtos
+   */
+   async deletarProduto(produto: Produto) {
+    await this.produtoService.deletar(produto).toPromise().then((result) => {
+      console.log(result);
+    })
   }
 }

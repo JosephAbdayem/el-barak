@@ -12,8 +12,16 @@ import { StatusService } from 'src/app/services/status/status.service';
 export class FilaPedidosAtivosComponent implements OnInit {
 
   displayedColumns: string[] = ['itensPedidos', 'mesa', 'usuario', 'dataCadastro', 'status'];
-  pedidos: Pedido[] = [];
-  status: Status[] = [];
+
+  /**
+   * Lista de pedidos
+   */
+  pedidos: Pedido[] = null;
+
+  /**
+   * Lista de status disponiveis
+   */
+  status: Status[] = null;
 
   constructor(
     private statusService: StatusService,
@@ -26,17 +34,6 @@ export class FilaPedidosAtivosComponent implements OnInit {
   ngOnInit() {
     this.buscarStatus();
     this.buscarPedidosAtivos();
-  }
-
-  /**
-   * Junta todos os itens do pedidos em uma string dividida por virgulas para realizar a exibição
-   */
-  tratarPedidos() {
-    let itensPedidos = [];
-    this.pedidos.forEach((pedido, index) => {
-      pedido.carrinhoPedidos.forEach((item) => { itensPedidos.push(item.produto.nome); });
-      this.pedidos[index].itensPedidos = itensPedidos.join(', ');
-    });
   }
 
   /**
@@ -53,18 +50,31 @@ export class FilaPedidosAtivosComponent implements OnInit {
    * Busca todos os pedidos ativos da fila
    */
   async buscarPedidosAtivos() {
-    await this.filaPedidosAtivosService.getAllByAtivo(true).toPromise().then((pedidosAtivos) => {
+    await this.filaPedidosAtivosService.getAllByStatusNao(3).toPromise().then((pedidosAtivos) => {
       this.pedidos = (pedidosAtivos as Pedido[]);
       this.tratarPedidos();
     })
   }
 
+  /**
+   * Junta todos os itens do pedidos em uma string dividida por virgulas para realizar a exibição
+   */
+  tratarPedidos() {
+    let itensPedidos = [];
+    this.pedidos.forEach((pedido, index) => {
+      pedido.carrinhoPedidos.forEach((item) => { itensPedidos.push(item.produto.nome); });
+      this.pedidos[index].itensPedidos = itensPedidos.join(', ');
+    });
+  }
+
+  /**
+   * Recebe o pedido requerido e o status para realizar a atualização na base de dados
+   * @param pedido Pedido a ter o status alterado
+   * @param status Status selecionado pelo usuario na interface
+   */
   atualizarStatusPedido(pedido: Pedido, status: Status) {
     pedido.status = status;
-    console.log(pedido.status);
-    console.log(status);
-    
-    this.filaPedidosAtivosService.insertPedidoCarrinho(pedido);
+    this.filaPedidosAtivosService.insertPedidoCarrinho(pedido).toPromise().finally(() => { this.buscarPedidosAtivos() });
   }
 
 }

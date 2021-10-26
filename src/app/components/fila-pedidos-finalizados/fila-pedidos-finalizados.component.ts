@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Pedido } from 'src/app/interfaces/pedido';
-import { FilaPedidosAtivosService } from 'src/app/services/fila-pedidos-ativos/fila-pedidos-ativos.service';
+import { FilaPedidosFinalizadosService } from 'src/app/services/fila-pedidos-finalizados/fila-pedidos-finalizados.service';
 
 @Component({
   selector: 'app-fila-pedidos-finalizados',
@@ -20,7 +20,7 @@ export class FilaPedidosFinalizadosComponent implements OnInit {
   pedidos: Pedido[] = [];
 
   constructor(
-    private filaPedidosAtivosService: FilaPedidosAtivosService
+    private filaPedidosFinalizadosService: FilaPedidosFinalizadosService
   ) { }
 
   /**
@@ -28,8 +28,7 @@ export class FilaPedidosFinalizadosComponent implements OnInit {
    * Busca todos os pedidos ativos da fila
    */
   async ngOnInit() {
-    await this.filaPedidosAtivosService.getAllByAtivo(false)
-      .toPromise().then((pedidosAtivos) => {
+    await this.filaPedidosFinalizadosService.getAllByStatus(3).toPromise().then((pedidosAtivos) => {
         this.pedidos = (pedidosAtivos as Pedido[])
         this.tratarPedidos()
       })

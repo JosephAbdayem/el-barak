@@ -16,7 +16,7 @@ export class ProdutoService {
    * Busca todos os produtos
    * @returns 
    */
-  getAll(): Observable<Produto[]> {
+  buscarTodos(): Observable<Produto[]> {
     return this.http.get<Produto[]>(`${environment.urlBase}${this.produtoUrl}`)
   }
 
@@ -24,7 +24,24 @@ export class ProdutoService {
    * Busca todos os produtos que satisfazem a condição proposta
    * @returns 
    */
-  getAllPredicate(search): Observable<Produto[]> {
+  buscarPredicate(search: any): Observable<Produto[]> {
     return this.http.get<Produto[]>(`${environment.urlBase}${this.produtoUrl}?search=START+${search}`)
+  }
+
+  /**
+  * Busca todos os produtos que satisfazem a condição proposta
+  * @returns 
+  */
+  atualizar(produto: Produto): Observable<Produto> {
+    return this.http.put<Produto>(`${environment.urlBase}${this.produtoUrl}/${produto.id}`, produto)
+  }
+
+  /**
+   * Deleta logicamente o produto recebido por parametro e atualiza a atividade para falso.
+   * @param produto protudo a ser deletado
+   */
+  deletar(produto: Produto): Observable<any> {
+    produto.ativo = false;
+    return this.http.put<Produto>(`${environment.urlBase}${this.produtoUrl}/${produto.id}`, produto)
   }
 }

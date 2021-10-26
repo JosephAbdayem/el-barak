@@ -1,7 +1,6 @@
 {
   "/elbarak/api": {
     "target": "http://localhost:7785",
-    "secure": false,
-    "logLevel": "debug"
+    "secure": false
   }
 }
