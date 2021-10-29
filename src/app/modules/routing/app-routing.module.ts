@@ -55,6 +55,10 @@ const APP_ROUTES: Routes = [
         path: 'cadastra-produto',
         children: [
           {
+            path: '',
+            component: CadastrarProdutoComponent,
+          },
+          {
             path: ':id',
             component: CadastrarProdutoComponent,
             pathMatch: 'full'

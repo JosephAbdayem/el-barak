@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Categoria } from 'src/app/interfaces/categoria';
 import { Produto } from 'src/app/interfaces/produto';
-import { Status } from 'src/app/interfaces/status';
+import { CategoriaService } from 'src/app/services/categoria/categoria.service';
 import { ProdutoService } from 'src/app/services/produto/produto.service';
-import { StatusService } from 'src/app/services/status/status.service';
 
 @Component({
   selector: 'app-cadastrar-produto',
@@ -14,98 +14,116 @@ import { StatusService } from 'src/app/services/status/status.service';
 export class CadastrarProdutoComponent implements OnInit {
 
   /**
+   * Parametro recebido na url
+   */
+  public id: number = null;
+
+  /**
    * Produto recebido do back-end.
    */
   public produto: Produto = null;
 
   /**
-   * Lista de status disponiveis
+   * Lista de categoria disponiveis
    */
-  status: Status[] = null;
+  public categorias: Categoria[] = null;
 
   /**
-  * Cargo form
- */
+   * Cargo form
+   */
   public produtoForm: FormGroup;
 
   constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private produtoService: ProdutoService,
-    private statusService: StatusService,
+    private categoriaService: CategoriaService,
   ) { }
-
-  /**
-   * Retorna o formControl 'ativo'
-   */
-  get ativo() {
-    return this.produtoForm.get('ativo');
-  }
 
   /**
    * Retorna o formControl 'nome'
    */
-  get nome() {
+  get nome(): AbstractControl {
     return this.produtoForm.get('nome');
   }
 
   /**
    * Retorna o formControl 'descricao'
    */
-  get descricao() {
+  get descricao(): AbstractControl {
     return this.produtoForm.get('descricao');
   }
 
   /**
    * Retorna o formControl 'preco'
    */
-  get preco() {
+  get preco(): AbstractControl {
     return this.produtoForm.get('preco');
   }
 
   /**
    * Retorna o formControl 'categoria'
    */
-  get categoria() {
+  get categoria(): AbstractControl {
     return this.produtoForm.get('categoria');
   }
 
+  /**
+   * Método de inicialização
+   */
   ngOnInit(): void {
-
+    this.buscarCategorias();
+    this.produtoForm = this.inicializaForm();
     this.activatedRoute.params.subscribe((params) => {
-      const id = params['id'];
-      if (id) {
-        this.produtoService.buscarPredicate(`id:${id}`).toPromise().then((produto) => {
+      this.id = params['id'];
+      if (this.id) {
+        this.produtoService.buscarPredicate(`id:${this.id}`).toPromise().then((produto) => {
           this.produto = (produto as any).content[0];
-          this.produtoForm = this.inicializaForm();
-          if (this.produto) {
-            this.produtoForm.patchValue(this.produto);
-          }
+          this.produto ? this.produtoForm.patchValue(this.produto) : null;
         })
       }
     });
   }
 
   /**
- * Inicializa form de cargo
- */
+   * Inicializa form de cargo
+   */
   inicializaForm(): FormGroup {
     return this.formBuilder.group({
-      ativo: [false, Validators.compose([Validators.required])],
+      id: [null, Validators.compose([Validators.required])],
       nome: ['', Validators.compose([Validators.required])],
+      preco: ['', Validators.compose([Validators.required])],
       descricao: ['', Validators.compose([Validators.required])],
-      preco: [0, Validators.compose([Validators.required])],
-      categoria: [{}, Validators.compose([Validators.required])]
+      categoria: ['', Validators.compose([Validators.required])],
+      dataCadastro: ['', Validators.compose([Validators.required])],
+      dataAtualizacao: ['', Validators.compose([Validators.required])],
     });
   }
 
   /**
-   * Busca todos os status disponiveis 
+   * Busca todos os categorias disponiveis 
    */
-  async buscarStatus() {
-    await this.statusService.getAll().toPromise().then((status) => {
-      this.status = (status as any).content;
+  async buscarCategorias() {
+    await this.categoriaService.getAll().toPromise().then((categorias) => {
+      this.categorias = (categorias as any).content;
     })
+  }
+
+  /**
+   * Atualizar ou Criar produto na base de dados1
+   */
+  salvar() {
+    if (this.id) {
+      this.produtoService.atualizar(this.produtoForm.value).toPromise().then(() => {
+        this.router.navigate(['/administrativo/lista-produtos']);
+      });
+    } else {
+      this.produtoService.cadastrar(this.produtoForm.value).toPromise().then(() => {
+        this.router.navigate(['/administrativo/lista-produtos']);
+      });
+    }
+
   }
 
 }

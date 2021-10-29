@@ -32,6 +32,14 @@ export class ProdutoService {
   * Busca todos os produtos que satisfazem a condição proposta
   * @returns 
   */
+  cadastrar(produto: Produto): Observable<Produto> {
+    return this.http.post<Produto>(`${environment.urlBase}${this.produtoUrl}`, produto)
+  }
+
+  /**
+  * Busca todos os produtos que satisfazem a condição proposta
+  * @returns 
+  */
   atualizar(produto: Produto): Observable<Produto> {
     return this.http.put<Produto>(`${environment.urlBase}${this.produtoUrl}/${produto.id}`, produto)
   }

@@ -1,42 +1,42 @@
-<div fxLayout="column" fxLayoutAlign="center center" style="height: 100vh;" fxLayoutGap="20px">
-    <div fxLayout="row" fxLayoutAlign="start center">
-        <h1>Fila de produtos</h1>
-    </div>
-    <form [formGroup]="produtoForm">
+<form [formGroup]="produtoForm" *ngIf="produtoForm" style="background-color: gray;">
+    <div fxLayout="column" fxLayoutAlign="center center" style="height: 100vh;" fxLayoutGap="20px">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <h1>Fila de produtos</h1>
+        </div>
+
         <div fxLayout="column" fxLayoutAlign="start start" margin-horizontal>
             <mat-form-field>
                 <mat-label> Nome </mat-label>
                 <input matInput placeholder="Digite o nome do produto." type="text" formControlName="nome">
             </mat-form-field>
         </div>
-        <div fxLayout="column" fxLayoutAlign="start start" margin-horizontal>
+
+        <div fxLayout.gt-xs="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" flex=100 full-width-p>
             <mat-form-field>
                 <mat-label> Descrição </mat-label>
                 <input matInput placeholder="Digite a descrição do produto." type="text" formControlName="descricao">
             </mat-form-field>
         </div>
-        <div fxLayout="column" fxLayoutAlign="start start" margin-horizontal>
+
+        <div fxLayout.gt-xs="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" flex=100 full-width-p>
             <mat-form-field>
                 <mat-label> Preço </mat-label>
                 <input matInput placeholder="Digite o preço do produto." type="number" formControlName="preco">
             </mat-form-field>
         </div>
-        <!-- <div fxLayout="column" fxLayoutAlign="start start" margin-horizontal>
+
+        <div fxLayout.gt-xs="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" flex=100 full-width-p>
             <mat-form-field>
-                <mat-label> Atividade </mat-label>
-                <mat-checkbox class="example-margin" formControlName="ativo">
-                </mat-checkbox>
-            </mat-form-field>
-        </div>
-        <div fxLayout="column" fxLayoutAlign="start start" margin-horizontal>
-            <mat-form-field>
-                <mat-label> Categoria </mat-label>
                 <mat-select formControlName="categoria">
-                    <mat-option *ngFor="let statusSingular of status" [value]="statusSingular">
-                        {{ statusSingular.nome }}
+                    <mat-option *ngFor="let categoria of categorias" [value]="categoria">
+                        {{categoria.nome}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-        </div> -->
-    </form>
-</div>
+        </div>
+
+        <button mat-raised-button (click)="salvar()" type="submit" style="background-color: #1aae9f;">
+            Salvar
+        </button>
+    </div>
+</form>
