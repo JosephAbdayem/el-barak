@@ -1,0 +1,12 @@
+table {
+    width: 100%;
+}
+
+.scroll-table {
+    overflow-y: scroll;
+    width: 20vw;
+}
+
+.d-content {
+    display: contents;
+}

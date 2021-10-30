@@ -17,7 +17,7 @@ export class FinalizacaoComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this.router.navigate(['/home']);
-    }, 10000);
+    }, 5000);
   }
 
 }
