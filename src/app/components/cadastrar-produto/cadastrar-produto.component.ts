@@ -114,6 +114,10 @@ export class CadastrarProdutoComponent implements OnInit {
    * Atualizar ou Criar produto na base de dados1
    */
   salvar() {
+    if (typeof this.produtoForm.value.categoria === 'string') {
+      this.produtoForm.value.categoria = this.categorias
+        .filter((categoria) => categoria.nome === this.produtoForm.value.categoria)[0];
+    }
     if (this.id) {
       this.produtoService.atualizar(this.produtoForm.value).toPromise().then(() => {
         this.router.navigate(['/administrativo/lista-produtos']);
@@ -123,7 +127,16 @@ export class CadastrarProdutoComponent implements OnInit {
         this.router.navigate(['/administrativo/lista-produtos']);
       });
     }
+  }
 
+  /**
+   * Valida categoria do produto na lista de possiveis categorias
+   * @param o1 Nome categoria
+   * @param o2 Objeto categoria
+   * @returns Categoria encontrada
+   */
+  campararCategorias(o1: any, o2: any) {
+    return (o1 == o2.nome);
   }
 
 }

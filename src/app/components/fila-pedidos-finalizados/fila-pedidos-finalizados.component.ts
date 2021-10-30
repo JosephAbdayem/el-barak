@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Pedido } from 'src/app/interfaces/pedido';
 import { FilaPedidosFinalizadosService } from 'src/app/services/fila-pedidos-finalizados/fila-pedidos-finalizados.service';
+import { ModalExibicaoItensComponent } from '../utils/modal-exibicao-itens/modal-exibicao-itens.component';
 
 @Component({
   selector: 'app-fila-pedidos-finalizados',
@@ -20,6 +22,7 @@ export class FilaPedidosFinalizadosComponent implements OnInit {
   pedidos: Pedido[] = [];
 
   constructor(
+    private dialog: MatDialog,
     private filaPedidosFinalizadosService: FilaPedidosFinalizadosService
   ) { }
 
@@ -41,8 +44,22 @@ export class FilaPedidosFinalizadosComponent implements OnInit {
     let itensPedidos = [];
     this.pedidos.forEach((pedido, index) => {
       pedido.carrinhoPedidos.forEach((item) => { itensPedidos.push(item.produto.nome); });
-      this.pedidos[index].itensPedidos = itensPedidos.join(', ');
+      this.pedidos[index].itensPedidos = itensPedidos;
     });
   }
+
+    /**
+   * Abre a modal de exibição dos produtos recebidos por parâmetro.
+   */
+     abrirModalExibicaoItens(pedido: Pedido): void {
+      const dialogRef = this.dialog.open(ModalExibicaoItensComponent, {
+        width: '500px',
+        data: { pedido: pedido }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        pedido = result;
+      });
+    }
 
 }

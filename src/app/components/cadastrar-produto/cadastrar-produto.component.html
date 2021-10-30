@@ -1,34 +1,38 @@
-<form [formGroup]="produtoForm" *ngIf="produtoForm" style="background-color: gray;">
+<form [formGroup]="produtoForm" *ngIf="produtoForm">
     <div fxLayout="column" fxLayoutAlign="center center" style="height: 100vh;" fxLayoutGap="20px">
         <div fxLayout="row" fxLayoutAlign="start center">
-            <h1>Fila de produtos</h1>
+            <h1 *ngIf="id">Editar produto</h1>
+            <h1 *ngIf="!id">Cadastrar produto</h1>
         </div>
 
         <div fxLayout="column" fxLayoutAlign="start start" margin-horizontal>
             <mat-form-field>
                 <mat-label> Nome </mat-label>
-                <input matInput placeholder="Digite o nome do produto." type="text" formControlName="nome">
+                <input style="background: brown;" matInput placeholder="Digite o nome do produto." type="text"
+                    formControlName="nome">
             </mat-form-field>
         </div>
 
         <div fxLayout.gt-xs="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" flex=100 full-width-p>
             <mat-form-field>
                 <mat-label> Descrição </mat-label>
-                <input matInput placeholder="Digite a descrição do produto." type="text" formControlName="descricao">
+                <input style="background: brown;" matInput placeholder="Digite a descrição do produto." type="text"
+                    formControlName="descricao">
             </mat-form-field>
         </div>
 
         <div fxLayout.gt-xs="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" flex=100 full-width-p>
             <mat-form-field>
                 <mat-label> Preço </mat-label>
-                <input matInput placeholder="Digite o preço do produto." type="number" formControlName="preco">
+                <input style="background: brown;" matInput placeholder="Digite o preço do produto." type="number"
+                    formControlName="preco">
             </mat-form-field>
         </div>
 
         <div fxLayout.gt-xs="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" flex=100 full-width-p>
             <mat-form-field>
-                <mat-select formControlName="categoria">
-                    <mat-option *ngFor="let categoria of categorias" [value]="categoria">
+                <mat-select style="background: brown;" formControlName="categoria" [compareWith]="campararCategorias">
+                    <mat-option *ngFor="let categoria of categorias" [value]="categoria.nome">
                         {{categoria.nome}}
                     </mat-option>
                 </mat-select>

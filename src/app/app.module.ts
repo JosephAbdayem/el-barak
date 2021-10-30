@@ -22,6 +22,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ListaProdutosComponent } from './components/lista-produtos/lista-produtos.component';
 import { EditarProdutoComponent } from './components/editar-produto/editar-produto.component';
 import { CadastrarProdutoComponent } from './components/cadastrar-produto/cadastrar-produto.component';
+import { ModalExibicaoItensComponent } from './components/utils/modal-exibicao-itens/modal-exibicao-itens.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { CadastrarProdutoComponent } from './components/cadastrar-produto/cadast
     ListaProdutosComponent,
     EditarProdutoComponent,
     CadastrarProdutoComponent,
+    ModalExibicaoItensComponent,
   ],
   imports: [
     CommonModule,

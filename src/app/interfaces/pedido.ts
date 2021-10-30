@@ -14,5 +14,5 @@ export interface Pedido {
     "usuario": Usuario,
     "status": Status,
     "carrinhoPedidos": CarrinhoPedido[],
-    "itensPedidos": string
+    "itensPedidos": string[]
 }

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Pedido } from 'src/app/interfaces/pedido';
 import { Status } from 'src/app/interfaces/status';
 import { FilaPedidosAtivosService } from 'src/app/services/fila-pedidos-ativos/fila-pedidos-ativos.service';
 import { StatusService } from 'src/app/services/status/status.service';
+import { ModalExibicaoItensComponent } from '../utils/modal-exibicao-itens/modal-exibicao-itens.component';
 
 @Component({
   selector: 'app-fila-pedidos-ativos',
@@ -24,6 +26,7 @@ export class FilaPedidosAtivosComponent implements OnInit {
   status: Status[] = null;
 
   constructor(
+    private dialog: MatDialog,
     private statusService: StatusService,
     private filaPedidosAtivosService: FilaPedidosAtivosService,
   ) { }
@@ -42,7 +45,6 @@ export class FilaPedidosAtivosComponent implements OnInit {
   async buscarStatus() {
     await this.statusService.getAll().toPromise().then((status) => {
       this.status = (status as any).content;
-      console.log(this.status);
     })
   }
 
@@ -63,7 +65,7 @@ export class FilaPedidosAtivosComponent implements OnInit {
     let itensPedidos = [];
     this.pedidos.forEach((pedido, index) => {
       pedido.carrinhoPedidos.forEach((item) => { itensPedidos.push(item.produto.nome); });
-      this.pedidos[index].itensPedidos = itensPedidos.join(', ');
+      this.pedidos[index].itensPedidos = itensPedidos;
     });
   }
 
@@ -72,9 +74,24 @@ export class FilaPedidosAtivosComponent implements OnInit {
    * @param pedido Pedido a ter o status alterado
    * @param status Status selecionado pelo usuario na interface
    */
-  atualizarStatusPedido(pedido: Pedido, status: Status) {
-    pedido.status = status;
-    this.filaPedidosAtivosService.insertPedidoCarrinho(pedido).toPromise().finally(() => { this.buscarPedidosAtivos() });
+  atualizarStatusPedido(pedido: Pedido, status: any) {
+    pedido.status = this.status.filter((statusSingular) => statusSingular.nome === status)[0];
+    this.filaPedidosAtivosService.insertPedidoCarrinho(pedido).toPromise()
+      .finally(() => { this.buscarPedidosAtivos() });
+  }
+
+  /**
+   * Abre a modal de exibição dos produtos recebidos por parâmetro.
+   */
+  abrirModalExibicaoItens(pedido: Pedido): void {
+    const dialogRef = this.dialog.open(ModalExibicaoItensComponent, {
+      width: '500px',
+      data: { pedido: pedido }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      pedido = result;
+    });
   }
 
 }

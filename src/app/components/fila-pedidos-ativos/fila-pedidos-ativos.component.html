@@ -21,7 +21,9 @@
                             </th>
                             <td mat-cell *matCellDef="let pedido" fxFlex="40" fxLayout="column"
                                 fxLayoutAlign="center start">
-                                {{ pedido.itensPedidos }}
+                                <button mat-button color="warn" (click)="abrirModalExibicaoItens(pedido)">
+                                    Ver itens
+                                </button>
                             </td>
                         </ng-container>
 
@@ -65,8 +67,8 @@
                             </th>
                             <td mat-cell *matCellDef="let pedido" fxFlex fxLayout="column"
                                 fxLayoutAlign="center center">
-                                <mat-select (selectionChange)="atualizarStatusPedido(pedido, $event.value)">
-                                    <mat-option *ngFor="let statusSingular of status" [value]="statusSingular">
+                                <mat-select style="background: brown;" (selectionChange)="atualizarStatusPedido(pedido, $event.value)" [value]="pedido.status.nome">
+                                    <mat-option *ngFor="let statusSingular of status" [value]="statusSingular.nome">
                                         {{ statusSingular.nome }}
                                     </mat-option>
                                 </mat-select>
