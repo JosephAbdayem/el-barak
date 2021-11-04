@@ -15,7 +15,7 @@
             <form [formGroup]="formBusca">
                 <mat-form-field>
                     <mat-label>Nome produto</mat-label>
-                    <input style="background: brown;" matInput formControlName="nomeProduto" required
+                    <input style="background: gray;" matInput formControlName="nomeProduto" required
                         (keyup.enter)="buscarProdutosNomeSelecionado()">
                 </mat-form-field>
                 <button mat-raised-button color="warn" (click)="buscarProdutosNomeSelecionado()">
@@ -25,10 +25,10 @@
 
             <mat-form-field>
                 <mat-label>Categoria</mat-label>
-                <mat-select style="background: brown;"
+                <mat-select style="background: gray;"
                     (selectionChange)="buscarProdutosCategoriaSelecionada($event.value)">
                     <mat-option *ngFor="let categoria of categorias" [value]="categoria">
-                        {{categoria.nome}}
+                            {{categoria.nome}}
                         <option value=""></option>
                     </mat-option>
                 </mat-select>

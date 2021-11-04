@@ -28,7 +28,9 @@ export class HomeComponent implements OnInit {
    * Método de inicialização
    */
   ngOnInit() {
-    this.buscarPedidosAtivos();
+    setInterval(() => {
+      this.buscarPedidosAtivos();
+    }, 5000);
   }
 
   /**
@@ -56,7 +58,7 @@ export class HomeComponent implements OnInit {
   /**
    * Abre a modal de exibição dos produtos recebidos por parâmetro.
    */
-   abrirModalExibicaoItens(pedido: Pedido): void {
+  abrirModalExibicaoItens(pedido: Pedido): void {
     const dialogRef = this.dialog.open(ModalExibicaoItensComponent, {
       width: '500px',
       data: { pedido: pedido }

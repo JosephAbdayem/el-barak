@@ -9,16 +9,16 @@
   </div>
 
 
-  <div fxLayout="column" fxLayoutAlign="center center">
+  <div fxLayout="column" fxLayoutAlign="center center" *ngIf="pedidos && pedidos.length !== 0">
     <div>
       <h1>Itens solicitados</h1>
     </div>
 
-    <div *ngIf="pedidos instanceof(Array)">
+    <div>
       <div fxLayout="column" fxLayoutGap="20px">
         <div class="scroll-table">
 
-          <ng-container *ngIf="pedidos.length !== 0">
+          <ng-container>
             <table mat-table [dataSource]="pedidos" class="mat-elevation-z8">
 
               <ng-container matColumnDef="itensPedidos">

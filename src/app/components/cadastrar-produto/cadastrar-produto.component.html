@@ -8,7 +8,7 @@
         <div fxLayout="column" fxLayoutAlign="start start" margin-horizontal>
             <mat-form-field>
                 <mat-label> Nome </mat-label>
-                <input style="background: brown;" matInput placeholder="Digite o nome do produto." type="text"
+                <input style="background: gray;" matInput placeholder="Digite o nome do produto." type="text"
                     formControlName="nome">
             </mat-form-field>
         </div>
@@ -16,7 +16,7 @@
         <div fxLayout.gt-xs="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" flex=100 full-width-p>
             <mat-form-field>
                 <mat-label> Descrição </mat-label>
-                <input style="background: brown;" matInput placeholder="Digite a descrição do produto." type="text"
+                <input style="background: gray;" matInput placeholder="Digite a descrição do produto." type="text"
                     formControlName="descricao">
             </mat-form-field>
         </div>
@@ -24,14 +24,14 @@
         <div fxLayout.gt-xs="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" flex=100 full-width-p>
             <mat-form-field>
                 <mat-label> Preço </mat-label>
-                <input style="background: brown;" matInput placeholder="Digite o preço do produto." type="number"
+                <input style="background: gray;" matInput placeholder="Digite o preço do produto." type="number"
                     formControlName="preco">
             </mat-form-field>
         </div>
 
         <div fxLayout.gt-xs="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" flex=100 full-width-p>
             <mat-form-field>
-                <mat-select style="background: brown;" formControlName="categoria" [compareWith]="campararCategorias">
+                <mat-select style="background: gray;" formControlName="categoria" [compareWith]="campararCategorias">
                     <mat-option *ngFor="let categoria of categorias" [value]="categoria.nome">
                         {{categoria.nome}}
                     </mat-option>
