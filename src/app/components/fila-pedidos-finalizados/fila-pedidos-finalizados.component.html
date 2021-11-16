@@ -1,11 +1,12 @@
 <div fxLayout="column" fxLayoutAlign="center center" style="height: 100vh;" fxLayoutGap="20px">
     <div fxLayout="row" fxLayoutAlign="start center">
-        <h1>Pedidos finalizados</h1>
+        <button mat-stroked-button color="warn" [routerLink]="['/administrativo/lista-produtos']">Lista de produtos</button>
+        <button mat-stroked-button color="warn" [routerLink]="['/administrativo/fila-pedidos-ativos']">Fila de pedidos</button>
+        <button mat-raised-button color="warn">Fila de pedidos finalizados</button>
     </div>
     <div *ngIf="!pedidos[0]">
         <mat-spinner></mat-spinner>
     </div>
-
     <div *ngIf="pedidos[0]">
         <div fxLayout="column" fxLayoutGap="20px">
             <div class="scroll-table">
@@ -66,5 +67,4 @@
             </div>
         </div>
     </div>
-
 </div>

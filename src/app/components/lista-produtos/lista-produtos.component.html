@@ -1,6 +1,11 @@
 <div fxLayout="column" fxLayoutAlign="center center" style="height: 100vh;" fxLayoutGap="20px">
+    <div fxLayout="row" fxLayoutAlign="start center">
+        <button mat-raised-button color="warn">Lista de produtos</button>
+        <button mat-stroked-button color="warn" [routerLink]="['/administrativo/fila-pedidos-ativos']">Fila de pedidos</button>
+        <button mat-stroked-button color="warn" [routerLink]="['/administrativo/fila-pedidos-finalizados']">Fila de pedidos finalizados</button>
+    </div>
     <div *ngIf="produtos instanceof(Array)" fxLayout="row" fxLayoutAlign="start center">
-        <h1>Fila de produtos</h1>
+        <h1></h1>
     </div>
 
     <div *ngIf="!produtos instanceof(Array)" fxLayout="column" fxLayoutAlign="start center">
@@ -28,7 +33,7 @@
                 <mat-select style="background: gray;"
                     (selectionChange)="buscarProdutosCategoriaSelecionada($event.value)">
                     <mat-option *ngFor="let categoria of categorias" [value]="categoria">
-                            {{categoria.nome}}
+                        {{categoria.nome}}
                         <option value=""></option>
                     </mat-option>
                 </mat-select>
@@ -113,5 +118,4 @@
             </div>
         </div>
     </div>
-
 </div>
