@@ -36,6 +36,8 @@ export class CardapioComponent implements OnInit {
   async ngOnInit() {
     await this.cardapioService.getAllProdutos()
       .toPromise().then((produtos) => {
+        (produtos as any).content = (produtos as any).content
+          .filter((produto) => produto.ativo === true);
         this.separarProdutosPorCategoria(produtos);
       })
     this.firstFormGroup = this._formBuilder.group({

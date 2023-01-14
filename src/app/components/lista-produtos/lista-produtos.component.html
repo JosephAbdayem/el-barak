@@ -1,6 +1,11 @@
 <div fxLayout="column" fxLayoutAlign="center center" style="height: 100vh;" fxLayoutGap="20px">
+    <div fxLayout="row" fxLayoutAlign="start center">
+        <button mat-raised-button color="warn">Lista de produtos</button>
+        <button mat-stroked-button color="warn" [routerLink]="['/administrativo/fila-pedidos-ativos']">Fila de pedidos</button>
+        <button mat-stroked-button color="warn" [routerLink]="['/administrativo/fila-pedidos-finalizados']">Fila de pedidos finalizados</button>
+    </div>
     <div *ngIf="produtos instanceof(Array)" fxLayout="row" fxLayoutAlign="start center">
-        <h1>Fila de produtos</h1>
+        <h1></h1>
     </div>
 
     <div *ngIf="!produtos instanceof(Array)" fxLayout="column" fxLayoutAlign="start center">
@@ -15,7 +20,7 @@
             <form [formGroup]="formBusca">
                 <mat-form-field>
                     <mat-label>Nome produto</mat-label>
-                    <input style="background: brown;" matInput formControlName="nomeProduto" required
+                    <input style="background: gray;" matInput formControlName="nomeProduto" required
                         (keyup.enter)="buscarProdutosNomeSelecionado()">
                 </mat-form-field>
                 <button mat-raised-button color="warn" (click)="buscarProdutosNomeSelecionado()">
@@ -25,7 +30,7 @@
 
             <mat-form-field>
                 <mat-label>Categoria</mat-label>
-                <mat-select style="background: brown;"
+                <mat-select style="background: gray;"
                     (selectionChange)="buscarProdutosCategoriaSelecionada($event.value)">
                     <mat-option *ngFor="let categoria of categorias" [value]="categoria">
                         {{categoria.nome}}
@@ -113,5 +118,4 @@
             </div>
         </div>
     </div>
-
 </div>
